@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUITester_CarouselView.UI.StockPages.StockCard.StockCardPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:local="clr-namespace:MAUITester_CarouselView.UI.StockViewModels.StockCard"
+			 x:DataType="local:StockCardViewModel"
+             xmlns:AppEngineClasses="clr-namespace:MAUITester_CarouselView.AppEngine.AppEngineClasses">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" RowSpacing="10" Padding="0,15,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="{Binding ActiveCategoryName}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="20" Padding="10,0,0,0" />
+            </Grid>
+            
+            <!--Categories-->
+            <CarouselView x:Name="fro_CarouselView_Categories"
+                          CurrentItemChanged="fro_CarouselView_Categories_CurrentItemChanged"
+                          Grid.Row="1"
+                          ItemsSource="{Binding Category_Items}"
+                          IndicatorView="fro_IndicatorView_Categories"
+                          VerticalScrollBarVisibility="Never" 
+						  HorizontalScrollBarVisibility="Never">
+
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="AppEngineClasses:cls_Category">
+                        <!--StockCards-->
+                        <ListView x:Name="fro_Exa_ListView"
+                                  VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  ItemsSource="{Binding Items}"
+                                  SelectionMode= "None">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="AppEngineClasses:cls_StockCard">
+                                    <ViewCell>
+                                        <ViewCell.View>
+                                            <Grid x:Name="fro_Grid_FoodMenu" Padding="6,3,5,5">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="70*" />
+                                                    <RowDefinition Height="30*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Row="0"  FontSize="14" Text="{Binding Name}" HorizontalOptions="Center" VerticalOptions="Center" MaxLines="3"/>
+
+                                            </Grid>
+                                        </ViewCell.View>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <!--Position of the category in list-->
+            <IndicatorView x:Name="fro_IndicatorView_Categories" Grid.Row="2" IndicatorColor="LightGray" SelectedIndicatorColor="Green" HorizontalOptions="Center" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
