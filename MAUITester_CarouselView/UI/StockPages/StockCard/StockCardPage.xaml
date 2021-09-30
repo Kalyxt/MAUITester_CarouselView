@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUITester_CarouselView.UI.StockPages.StockCard.StockCardPage"
-             NavigationPage.HasNavigationBar="False"
              xmlns:local="clr-namespace:MAUITester_CarouselView.UI.StockViewModels.StockCard"
 			 x:DataType="local:StockCardViewModel"
              xmlns:AppEngineClasses="clr-namespace:MAUITester_CarouselView.AppEngine.AppEngineClasses">
